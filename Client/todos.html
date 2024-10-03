@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do List</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet" />
+    <!-- Stylesheet -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        body {
+            width: 100%;
+            background-color: skyblue;
+        }
+
+        .container {
+            width: 30rem;
+            margin: 2rem auto;
+        }
+
+        .container .title {
+            text-align: center;
+        }
+
+        .container .form {
+            background-color: #fff;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .form input {
+            flex: 1;
+            padding: 0.7rem;
+            border: none;
+            background-color: transparent;
+            outline: none;
+        }
+
+        .form .btn {
+            padding: 0.7rem;
+            background-color: darkblue;
+            color: #fff;
+            cursor: pointer;
+            border: none;
+        }
+
+        .lists .todo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fff;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+        }
+
+        .todo span {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title">OOP Todo List</h1>
+        <h1 id="email" class="title">Email Placeholder</h1>
+        <h1 id="name" class="title">Name Placeholder</h1>
+        <dev> <button type="button" class="btn btn-secondary" id = "btnLogout">Logout</button></dev>
+        <dev><button type="button" class="btn btn-secondary btn-sm"id = "btnSave">Save</button></dev>
+       
+         
+        <form class="form" data-form>
+            <input type="text" placeholder="Todo..." data-input>
+            <button class="btn">Submit</button>
+            
+
+        </form>
+        
+        <div class="lists" data-lists>
+            <!-- INNERHTML -->
+        </div>
+        <div id="todo-container">
+            <div data-lists></div>
+        </div>
+    </div>
+    <!-- Script -->
+    <script src="todo.js"></script>
+
+    <script>
+        // Make an AJAX request to fetch the email from the server
+        fetch("/get-title")
+            .then(response => response.text())
+            .then(email => {
+                // Update the content of the h1 element with the received email
+                document.getElementById("email").textContent = email;
+            })
+            .catch(error => console.error('Error fetching email:', error));
+    </script>
+
+    <script>
+        // Make an AJAX request to fetch the name from the server
+        fetch("/get-name")
+            .then(response => response.text())
+            .then(name => {
+                // Update the content of the h1 element with the received name
+                document.getElementById("name").textContent = name;
+            })
+            .catch(error => console.error('Error fetching name:', error));
+    </script>
+    
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
