@@ -14,7 +14,7 @@ A simple Todo List application that allows users to create, manage, and track th
    git clone https://github.com/haimhubara/TodoListApp.git
    cd TodoListApp
    npm install
-   npm start
+   npm run devStart
 
 ## Usage
   Open your browser and go to http://localhost:3000 to access the app.
