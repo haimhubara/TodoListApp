@@ -3,9 +3,11 @@ const path = require("path");
 const app = express();
 const session = require("express-session");
 const methodOverride = require("method-override");
+require('dotenv').config();
+const bcrypt = require('bcrypt');
 
 const { MongoClient } = require('mongodb');
-const uri = 'mongodb://localhost:27017';
+const uri = process.env.DATABASE_CONNECTION ;
 const client = new MongoClient(uri);
 
 async function connectToMongoDB() {
@@ -55,7 +57,7 @@ async function insertUser(user) {
 
 app.use(
   session({
-    secret: "your-secret-key", // Set a secret key for session encryption
+    secret: process.env.SESSION_SECRET, // Set a secret key for session encryption
     resave: false,
     saveUninitialized: true,
   })
@@ -195,6 +197,11 @@ app.post("/saveUser", async (req, res) => {
     console.error("Error saving user list:", error);
     res.status(500).send("Error saving user list");
   }
+});
+
+
+app.get("/", (req, res) => {
+  res.redirect("/login");
 });
 
 app.get("/getUsers", async (req, res) => {
